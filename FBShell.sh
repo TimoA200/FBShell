@@ -12,7 +12,7 @@ uri="urn:dslforum-org:service:WANPPPConnection:1"
 AddPortMapping() {
 	action='AddPortMapping'
 	SoapParamString="<NewRemoteHost>$1</NewRemoteHost><NewExternalPort>$2</NewExternalPort><NewProtocol>$3</NewProtocol><NewInternalPort>$4</NewInternalPort><NewInternalClient>$5</NewInternalClient><NewEnabled>$6</NewEnabled><NewPortMappingDescription>$7</NewPortMappingDescription><NewLeaseDuration>$8</NewLeaseDuration>"
-	output=$(curl -s -k -m 5 --anyauth -u "tld:tldhoptoorg" http://$BoxIP:49000$location -H 'Content-Type: text/xml; charset="utf-8"' -H "SoapAction:$uri#$action" -d "<?xml version='1.0' encoding='utf-8'?><s:Envelope s:encodingStyle='http://schemas.xmlsoap.org/soap/encoding/' xmlns:s='http://schemas.xmlsoap.org/soap/envelope/'><s:Body><u:$action xmlns:u='$uri'>$SoapParamString</u:$action></s:Body></s:Envelope>")
+	output=$(curl -s -k -m 5 --anyauth -u "$BoxUSER:BoxPW" http://$BoxIP:49000$location -H 'Content-Type: text/xml; charset="utf-8"' -H "SoapAction:$uri#$action" -d "<?xml version='1.0' encoding='utf-8'?><s:Envelope s:encodingStyle='http://schemas.xmlsoap.org/soap/encoding/' xmlns:s='http://schemas.xmlsoap.org/soap/envelope/'><s:Body><u:$action xmlns:u='$uri'>$SoapParamString</u:$action></s:Body></s:Envelope>")
 	echo $output
 }
 
@@ -20,7 +20,7 @@ DeletePortMapping() {
 	action='DeletePortMapping'
 	SoapParamString="<NewRemoteHost>$1</NewRemoteHost><NewExternalPort>$2</NewExternalPort><NewProtocol>$3</NewProtocol>"
 
-	output=$(curl -s -k -m 5 --anyauth -u "tld:tldhoptoorg" http://$BoxIP:49000$location -H 'Content-Type: text/xml; charset="utf-8"' -H "SoapAction:$uri#$action" -d "<?xml version='1.0' encoding='utf-8'?><s:Envelope s:encodingStyle='http://schemas.xmlsoap.org/soap/encoding/' xmlns:s='http://schemas.xmlsoap.org/soap/envelope/'><s:Body><u:$action xmlns:u='$uri'>$SoapParamString</u:$action></s:Body></s:Envelope>")
+	output=$(curl -s -k -m 5 --anyauth -u "$BoxUSER:BoxPW" http://$BoxIP:49000$location -H 'Content-Type: text/xml; charset="utf-8"' -H "SoapAction:$uri#$action" -d "<?xml version='1.0' encoding='utf-8'?><s:Envelope s:encodingStyle='http://schemas.xmlsoap.org/soap/encoding/' xmlns:s='http://schemas.xmlsoap.org/soap/envelope/'><s:Body><u:$action xmlns:u='$uri'>$SoapParamString</u:$action></s:Body></s:Envelope>")
 	echo $output
 }
 
